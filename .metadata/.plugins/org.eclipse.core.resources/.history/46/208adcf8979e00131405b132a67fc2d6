@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"> <!-- Old namespace "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd" -->
+<hibernate-configuration>
+    <session-factory name="CaribResortSessionFactory">
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/caribresort</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+        
+        <!-- Mapping Resources -->
+       <!--  <mapping resource="Employee.hbm.xml"/>-->
+        <mapping resource="Armband.hbm.xml"/>
+        <mapping resource="Customerorder.hbm.xml"/>
+        <mapping resource="Customerorderitem.hbm.xml"/>
+        <mapping resource="Guest.hbm.xml"/>
+        <mapping resource="Role.hbm.xml"/>
+        <mapping resource="Drink.hbm.xml"/>
+        <mapping resource="Drinktype.hbm.xml"/>
+        
+    </session-factory>
+    
+</hibernate-configuration>

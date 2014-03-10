@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="org.hibernate.Transaction"/>
+<fullyQualifiedTypeName name="com.caribresort.logging.Default"/>
+<fullyQualifiedTypeName name="com.caribresort.database.BaseHibernate"/>
+<fullyQualifiedTypeName name="org.hibernate.cfg.Configuration"/>
+<fullyQualifiedTypeName name="com.caribresort.logging.DefaultLogger"/>
+<fullyQualifiedTypeName name="org.hibernate.service.ServiceRegistry"/>
+</qualifiedTypeNameHistroy>

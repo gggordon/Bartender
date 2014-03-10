@@ -1,0 +1,5 @@
+package com.caribresort.server;
+
+public class Request {
+
+}

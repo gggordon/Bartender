@@ -1,0 +1,9 @@
+package com.caribresort.server;
+
+public class Request {
+
+	private String username;
+	private String password;
+	private String action;
+	private Object object;
+}

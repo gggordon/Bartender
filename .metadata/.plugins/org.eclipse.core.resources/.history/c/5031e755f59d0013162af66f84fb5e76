@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 25, 2014 2:09:10 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <subclass name="com.caribresort.entity.User" extends="com.caribresort.entity.Person" discriminator-value="User" lazy="false" abstract="true">
+        <property name="username" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <many-to-one name="role" class="com.caribresort.entity.Role" fetch="join">
+            <column name="ROLE" />
+        </many-to-one>
+    </subclass>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 25, 2014 2:21:25 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="entity.Customerorderitem" table="customerorderitem" catalog="caribresort">
+        <id name="customerOrderItemId" type="java.lang.Integer">
+            <column name="customerOrderItemId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="drink" class="entity.Drink" fetch="select">
+            <column name="drinkId" />
+        </many-to-one>
+        <many-to-one name="customerorder" class="entity.Customerorder" fetch="select">
+            <column name="customerOrderId" />
+        </many-to-one>
+        <property name="orderQuantity" type="java.lang.Integer">
+            <column name="orderQuantity" />
+        </property>
+    </class>
+</hibernate-mapping>

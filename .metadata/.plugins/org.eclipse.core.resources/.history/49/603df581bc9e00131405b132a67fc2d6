@@ -1,0 +1,8 @@
+package com.caribresort.entity;
+
+import java.io.Serializable;
+
+public interface CaribResortEntity extends Serializable{
+
+	
+}

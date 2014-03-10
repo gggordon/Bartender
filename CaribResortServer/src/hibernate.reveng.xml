@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-catalog="caribresort" match-name="armband"/>
+  <table-filter match-catalog="caribresort" match-name="customerorder"/>
+  <table-filter match-catalog="caribresort" match-name="customerorderitem"/>
+  <table-filter match-catalog="caribresort" match-name="drink"/>
+  <table-filter match-catalog="caribresort" match-name="drinktype"/>
+  <table-filter match-catalog="caribresort" match-name="employee"/>
+  <table-filter match-catalog="caribresort" match-name="guest"/>
+  <table-filter match-catalog="caribresort" match-name="role"/>
+</hibernate-reverse-engineering>

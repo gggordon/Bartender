@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 25, 2014 2:21:25 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="entity.Drink" table="drink" catalog="caribresort">
+        <id name="drinkId" type="java.lang.Integer">
+            <column name="drinkId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="drinktype" class="entity.Drinktype" fetch="select">
+            <column name="drinkTypeId" />
+        </many-to-one>
+        <property name="drinkName" type="java.lang.Integer">
+            <column name="drinkName" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="createdDate" length="19" />
+        </property>
+        <set name="customerorderitems" table="customerorderitem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="drinkId" />
+            </key>
+            <one-to-many class="entity.Customerorderitem" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,20 @@
+package com.caribresort.entity;
+
+
+
+public class Employee extends User{
+
+	@Override
+	public boolean Login(String username, String password) {
+		boolean loginSuccess = false;
+		// TODO Fully Implement Login Method for Employee
+		if(loginSuccess)
+			this.getRole().setBartender();
+		return loginSuccess;
+	}
+	
+	public boolean Serve(Drink drink){
+		return true;
+	}
+
+}

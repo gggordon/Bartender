@@ -1,0 +1,48 @@
+package com.caribresort.database;
+
+import com.caribresort.logging.DefaultLogger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.SessionFactory;
+
+@SuppressWarnings("deprecation") //TODO : Determine new method to get Hibernate Configure
+public class BaseHibernate {
+
+    private static final SessionFactory sessionFactory;
+    
+    static {
+        try {
+            // Create the SessionFactory from standard (hibernate.cfg.xml) 
+            // config file.
+            //sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+            sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+        } catch (Throwable ex) {
+            // Log the exception. 
+            System.err.println("Initial SessionFactory creation failed." + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
+    
+    public static Session getSession() {
+        return sessionFactory.openSession();
+    }
+    
+    /**
+     * Insert hibernate object
+     * */
+    public static Boolean insert(Object object){
+    	Session session = getSession();
+    	Transaction trans = null;
+    	try{
+    		
+    	}catch(RuntimeException re){
+    		
+    	}catch(Exception e){
+    		
+    	}
+    	
+    	return false;
+    }
+}

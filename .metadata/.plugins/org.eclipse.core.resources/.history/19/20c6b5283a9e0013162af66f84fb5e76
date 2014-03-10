@@ -1,0 +1,16 @@
+package com.caribresort.server;
+
+public class Response {
+
+	private Boolean success;
+	private String[] errors;
+	private Object result;
+	
+	public Response(Boolean success, String[] errors, Object result) {
+		super();
+		this.success = success;
+		this.errors = errors;
+		this.result = result;
+	}
+	
+}

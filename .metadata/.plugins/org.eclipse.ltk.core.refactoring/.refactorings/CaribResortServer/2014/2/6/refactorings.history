@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.caribresort.entity.Bartender&apos; to &apos;Employee&apos;&#x0D;&#x0A;- Original project: &apos;CaribResort&apos;&#x0D;&#x0A;- Original element: &apos;com.caribresort.entity.Bartender&apos;&#x0D;&#x0A;- Renamed element: &apos;com.caribresort.entity.Employee&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Rename similarly named elements, also find name suffixes&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Bartender&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.caribresort.entity{Bartender.java[Bartender" matchStrategy="3" name="Employee" qualified="false" references="true" similarDeclarations="true" stamp="1391580581220" textual="true" version="1.0"/>
+</session>

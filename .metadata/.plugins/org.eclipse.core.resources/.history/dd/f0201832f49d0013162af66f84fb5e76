@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 25, 2014 2:09:10 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <subclass name="com.caribresort.entity.Customer" extends="com.caribresort.entity.Person" discriminator-value="Customer" lazy="false">
+        <many-to-one name="armband" class="com.caribresort.entity.ArmBand" fetch="join">
+            <column name="ARMBAND" />
+        </many-to-one>
+        <list name="orders" inverse="false" table="ORDER" lazy="true" access="field">
+            <key>
+                <column name="ARMBAND" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="com.caribresort.entity.Order" />
+        </list>
+    </subclass>
+</hibernate-mapping>

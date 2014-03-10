@@ -1,0 +1,17 @@
+
+import com.caribresort.database.BaseHibernate;
+import com.caribresort.entity.*;
+
+/**
+ * Driver module to be used by application
+ * */
+@SuppressWarnings("unused")
+public class Driver {
+
+	public static void main(String[] args) {
+
+		System.out.println(BaseHibernate.insert(new Armband("Yellow")));
+
+	}
+
+}

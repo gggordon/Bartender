@@ -1,0 +1,43 @@
+package com.caribresort.logging;
+
+import org.apache.log4j.Logger;
+
+/**
+ * <h4>Logger</h4>
+ * <p>Default Logger that will be used by application</p>
+ * <p>Will include an instance of logger and implement main functions</p>
+ * */
+//TODO : Include Apache j4 loggger and implement logging
+public class Default {
+
+	private static Logger logger = Logger.getLogger(Default.class);
+
+	public static void info(Object message){
+		logger.info(message);
+		logger.fatal(message);
+		logger.debug(message);
+		logger.error(message);
+		logger.trace(message);
+		logger.warn(message);
+	}
+
+	public static void fatal(Object message){
+
+	} 
+
+	public static void warn(Object message){
+
+	}
+
+	public static void debug(Object message){
+
+	}
+
+	public static void error(Object message){
+
+	}
+
+	public static void trace(Object message){
+
+	}
+}
