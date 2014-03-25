@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="org.hibernate.Transaction"/>
 <fullyQualifiedTypeName name="com.caribresort.logging.Default"/>
 <fullyQualifiedTypeName name="com.caribresort.database.BaseHibernate"/>
 <fullyQualifiedTypeName name="org.hibernate.cfg.Configuration"/>
 <fullyQualifiedTypeName name="com.caribresort.logging.DefaultLogger"/>
 <fullyQualifiedTypeName name="org.hibernate.service.ServiceRegistry"/>
+<fullyQualifiedTypeName name="com.caribresort.server.RequestAction"/>
+<fullyQualifiedTypeName name="com.caribresort.entity.Drink"/>
+<fullyQualifiedTypeName name="com.caribresort.database.BartenderDB"/>
+<fullyQualifiedTypeName name="com.caribresort.server.Request"/>
+<fullyQualifiedTypeName name="com.caribresort.database.ManagerDB"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
+<fullyQualifiedTypeName name="com.caribresort.classes.Order"/>
+<fullyQualifiedTypeName name="com.caribresort.database.CustomerDB"/>
+<fullyQualifiedTypeName name="com.caribresort.entity.Customerorder"/>
+<fullyQualifiedTypeName name="com.caribresort.entity.Guest"/>
+<fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="com.caribresort.entity.Customerorderitem"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

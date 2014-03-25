@@ -1,0 +1,57 @@
+package com.caribresort.factory;
+
+import com.caribresort.actions.Request;
+import com.caribresort.actions.RequestAction;
+import com.caribresort.actions.Response;
+import com.caribresort.classes.Order;
+import com.caribresort.database.CustomerDB;
+import com.caribresort.entity.Customerorder;
+import com.caribresort.entity.Guest;
+
+public class GuestFactory extends AbstractFactory {
+
+	
+	public GuestFactory(Request request){
+		this.request = request;
+	}
+	@Override
+	public Response processRequest() {
+		Response response = invalidResponse;
+		switch(request.getAction()){
+		case RequestAction.MAKEORDER:
+			response= makeOrder();
+			break;
+		case RequestAction.ADDITEMTOORDER:
+			response= addItemToOrder();
+			break;
+		}
+		return response==null?invalidResponse:response;
+	}
+	
+	private Response makeOrder(){
+		Response response=null;
+		try{
+			Order order = (Order)request.getObject();
+			Customerorder cOrder=new Customerorder();
+			cOrder.setOrderDate(order.getOrderDate());
+			cOrder.setGuest((Guest)  CustomerDB.find(Guest.class, order.getPersonId()));
+			CustomerDB.insert(cOrder);
+			
+		}catch(ClassCastException e){
+			
+		}
+		catch(IllegalArgumentException e){
+			
+		}
+		catch(Exception e){
+			
+		}
+		return response;
+	}
+	
+	private Response addItemToOrder(){
+		//TODO : Implement add item to order
+		return null;
+	}
+
+}

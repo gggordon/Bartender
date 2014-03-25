@@ -5,7 +5,7 @@ import com.caribresort.actions.Response;
 
 abstract public class AbstractFactory {
     protected Request request=null;	
-    protected static Response invalidResponse=new Response(false,new String[]{"INVALID_ACTION"},null);
+    public static final Response invalidResponse=new Response(false,new String[]{"INVALID_ACTION"},null);
     
     
     

@@ -1,18 +1,20 @@
 package com.caribresort.actions;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class Response {
+public class Response implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Boolean success;
 	private String[] errors;
-	private Object result;
+	private Serializable result;
 	
 	public Response() {
 		super();
 	}
 
-	public Response(Boolean success, String[] errors, Object result) {
+	public Response(Boolean success, String[] errors, Serializable result) {
 		super();
 		this.success = success;
 		this.errors = errors;
@@ -39,7 +41,7 @@ public class Response {
 		return result;
 	}
 
-	public void setResult(Object result) {
+	public void setResult(Serializable result) {
 		this.result = result;
 	}
 

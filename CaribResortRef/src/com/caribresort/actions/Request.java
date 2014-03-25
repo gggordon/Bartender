@@ -1,18 +1,21 @@
 package com.caribresort.actions;
 
-public class Request {
+import java.io.Serializable;
 
+public class Request implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private String username;
 	private String password;
 	private String action;
-	private Object object;
+	private Serializable object;
 	
 	public Request() {
 		super();
 	}
 
 	public Request(String username, String password, String action,
-			Object object) {
+			Serializable object) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -48,7 +51,7 @@ public class Request {
 		return object;
 	}
 
-	public void setObject(Object object) {
+	public void setObject(Serializable object) {
 		this.object = object;
 	}
 

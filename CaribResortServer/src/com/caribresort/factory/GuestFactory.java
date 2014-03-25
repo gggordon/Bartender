@@ -1,8 +1,16 @@
 package com.caribresort.factory;
 
+import java.util.ArrayList;
+import java.util.Set;
+
 import com.caribresort.actions.Request;
 import com.caribresort.actions.RequestAction;
 import com.caribresort.actions.Response;
+import com.caribresort.classes.Order;
+import com.caribresort.database.CustomerDB;
+import com.caribresort.entity.Customerorder;
+import com.caribresort.entity.Customerorderitem;
+import com.caribresort.entity.Guest;
 
 public class GuestFactory extends AbstractFactory {
 
@@ -25,8 +33,35 @@ public class GuestFactory extends AbstractFactory {
 	}
 	
 	private Response makeOrder(){
-		//TODO : Implement make order
-		return null;
+		Response response=null;
+		ArrayList<String> errors = new ArrayList<String>();  
+		try{			
+			
+			Customerorder cOrder=(Customerorder)request.getObject();
+			if(!CustomerDB.insert(cOrder))
+			{
+			    throw new Exception("Unable to save order");	
+			}else{
+				for(Customerorderitem c : cOrder.getCustomerorderitems()){
+					try{
+						c.setCustomerorder(cOrder);
+						CustomerDB.insert(c);
+					}catch(Exception e){
+						//TODO: loging here
+					}
+				}
+			}
+			
+		}catch(ClassCastException e){
+			
+		}
+		catch(IllegalArgumentException e){
+			
+		}
+		catch(Exception e){
+			
+		}
+		return response;
 	}
 	
 	private Response addItemToOrder(){

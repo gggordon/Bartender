@@ -1,0 +1,53 @@
+package com.caribresort.actions;
+
+import java.io.Serializable;
+import java.util.Arrays;
+
+public class Response implements Serializable {
+
+	private Boolean success;
+	private String[] errors;
+	private Object result;
+	
+	public Response() {
+		super();
+	}
+
+	public Response(Boolean success, String[] errors, Object result) {
+		super();
+		this.success = success;
+		this.errors = errors;
+		this.result = result;
+	}
+
+	public Boolean getSuccess() {
+		return success;
+	}
+
+	public void setSuccess(Boolean success) {
+		this.success = success;
+	}
+
+	public String[] getErrors() {
+		return errors;
+	}
+
+	public void setErrors(String[] errors) {
+		this.errors = errors;
+	}
+
+	public Object getResult() {
+		return result;
+	}
+
+	public void setResult(Object result) {
+		this.result = result;
+	}
+
+	@Override
+	public String toString() {
+		return "Response [success=" + success + ", errors="
+				+ Arrays.toString(errors) + ", result=" + result + "]";
+	}
+	
+}
