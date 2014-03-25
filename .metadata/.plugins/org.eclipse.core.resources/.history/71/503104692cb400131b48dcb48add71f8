@@ -1,0 +1,18 @@
+package com.caribresort.server;
+
+public interface RequestAction {
+	//Bartender Actions
+	String SERVE="SERVE";
+	String OPEN="OPEN";
+	
+	//Customer Actions
+	String MAKEORDER = "MAKEORDER";
+	String ADDITEMTOORDER="ADDITEMTOORDER";
+	
+	//Manager Actions
+	String GENERATEREPORT = "GENERATEREPORT";
+	String VIEWDRINKS = "VIEWDRINKS";
+	String ADDDRINK = "ADDDRINKR";
+	String REMOVEDRINK = "REMOVEDRINK";
+	String UPDATEDRINK = "UPDATEDRINK";
+}

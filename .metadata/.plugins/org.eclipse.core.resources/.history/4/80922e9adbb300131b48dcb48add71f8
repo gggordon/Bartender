@@ -1,0 +1,10 @@
+package com.caribresort.database;
+
+import com.caribresort.entity.Drink;
+
+public class BartenderDB extends BaseHibernate {
+
+	public static Boolean serveDrink(Drink drink){
+		return null;
+	}
+}

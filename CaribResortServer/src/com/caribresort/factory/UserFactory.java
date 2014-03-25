@@ -1,7 +1,7 @@
 package com.caribresort.factory;
 
-import com.caribresort.server.Request;
-import com.caribresort.server.Response;
+import com.caribresort.actions.Request;
+import com.caribresort.actions.Response;
 import com.caribresort.database.BaseHibernate;;
 
 public class UserFactory {

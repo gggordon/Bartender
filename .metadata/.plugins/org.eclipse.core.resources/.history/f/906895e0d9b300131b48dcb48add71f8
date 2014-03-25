@@ -1,0 +1,6 @@
+package com.caribresort.server;
+
+public interface RequestAction {
+	
+
+}

@@ -1,0 +1,37 @@
+package com.caribresort.factory;
+
+import com.caribresort.actions.Request;
+import com.caribresort.actions.RequestAction;
+import com.caribresort.actions.Response;
+
+public class ManagerFactory extends AbstractFactory {
+
+	public ManagerFactory(Request request){
+		this.request = request;
+	}
+	
+	@Override
+	public Response processRequest() {
+		Response response = invalidResponse;
+		switch(request.getAction()){
+		case RequestAction.ADDDRINK:
+			//response= serveDrink();
+			break;
+		case RequestAction.VIEWDRINKS:
+			//response= openDrink();
+			break;
+			
+		case RequestAction.REMOVEDRINK:
+			//response= openDrink();
+			break;
+		case RequestAction.UPDATEDRINK:
+			//response= openDrink();
+			break;
+		case RequestAction.GENERATEREPORT:
+			//response= openDrink();
+			break;
+		}
+		return response;
+	}
+
+}

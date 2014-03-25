@@ -1,9 +1,0 @@
-package com.caribresort.database;
-
-import org.hibernate.Session;
-import org.hibernate.cfg.AnnotationConfiguration;
-import org.hibernate.SessionFactory;
-
-public class BaseHibernate {
-
-}

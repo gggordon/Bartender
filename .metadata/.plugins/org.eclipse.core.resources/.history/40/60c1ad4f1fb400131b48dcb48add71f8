@@ -1,0 +1,10 @@
+package com.caribresort.server;
+
+public interface RequestAction {
+	//Bartender Actions
+	String SERVE="SERVE";
+	String OPEN="OPEN";
+	String MAKEORDER = "MAKEORDER";
+	String ADDITEMTOORDER="ADDITEMTOORDER";
+
+}

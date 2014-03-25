@@ -1,0 +1,6 @@
+package com.caribresort.database;
+
+public class BartenderDB extends BaseHibernate {
+
+	
+}

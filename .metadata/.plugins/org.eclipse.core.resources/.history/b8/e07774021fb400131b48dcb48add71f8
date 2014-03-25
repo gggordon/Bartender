@@ -1,0 +1,25 @@
+package com.caribresort.factory;
+
+import com.caribresort.server.Response;
+
+public class GuestFactory extends AbstractFactory {
+
+	
+	@Override
+	public Response processRequest() {
+		Response response = invalidResponse;
+		// TODO Auto-generated method stub
+		return response;
+	}
+	
+	private Boolean makeOrder(){
+		//TODO : Implement make order
+		return false;
+	}
+	
+	private Boolean addItemToOrder(){
+		//TODO : Implement add item to order
+		return false;
+	}
+
+}

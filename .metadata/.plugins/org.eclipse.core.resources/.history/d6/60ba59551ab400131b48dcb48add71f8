@@ -1,0 +1,41 @@
+package com.caribresort.factory;
+
+import com.caribresort.server.Request;
+import com.caribresort.server.Response;
+import com.caribresort.server.RequestAction;
+import com.caribresort.database.BartenderDB;
+
+
+public class BartenderFactory extends AbstractFactory{
+	public BartenderFactory(Request request){
+		this.request = request;
+	}
+
+	@Override
+	public Response processRequest() {
+		Response response = invalidResponse;
+		switch(request.getAction()){
+		case RequestAction.SERVE:
+			response= serveDrink();
+			break;
+		case RequestAction.OPEN:
+			response= openDrink();
+			break;
+		}
+		return response;
+	}
+
+	private Response openDrink() {
+		if(BartenderDB.serveDrink())
+			return new Response(true,new String[]{},true);
+		else
+			return new Response(true,new String[]{"Unable to serve Drink"},false);
+	}
+
+	private Response serveDrink() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+}

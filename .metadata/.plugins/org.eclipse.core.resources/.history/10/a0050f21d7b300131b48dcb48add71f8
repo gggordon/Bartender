@@ -1,0 +1,18 @@
+package com.caribresort.factory;
+
+import com.caribresort.server.Request;
+import com.caribresort.server.Response;
+
+abstract public class AbstractFactory {
+    protected Request request;	
+    
+    public abstract Response processRequest();
+    
+	public void setRequest(Request request) {
+		this.request = request;
+	}
+	
+	public Request getRequest() {
+		return request;
+	}
+}

@@ -1,0 +1,23 @@
+package com.caribresort.factory;
+
+import com.caribresort.server.RequestAction;
+import com.caribresort.server.Response;
+
+public class ManagerFactory extends AbstractFactory {
+
+	
+	
+	@Override
+	public Response processRequest() {
+		switch(request.getAction()){
+		case RequestAction.SERVE:
+			response= serveDrink();
+			break;
+		case RequestAction.OPEN:
+			response= openDrink();
+			break;
+		}
+		return null;
+	}
+
+}

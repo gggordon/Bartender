@@ -1,0 +1,35 @@
+package com.caribresort.factory;
+
+import com.caribresort.server.Request;
+import com.caribresort.server.Response;
+import com.caribresort.server.RequestAction;
+
+
+public class BartenderFactory extends AbstractFactory{
+	public BartenderFactory(Request request){
+		this.request = request;
+	}
+
+	@Override
+	public Response processRequest() {
+		switch(request.getAction()){
+		case RequestAction.SERVE:
+			return serveDrink();
+		case RequestAction.OPEN:
+			return openDrink();
+		}
+		return invalidResponse;
+	}
+
+	private Response openDrink() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private Response serveDrink() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+}

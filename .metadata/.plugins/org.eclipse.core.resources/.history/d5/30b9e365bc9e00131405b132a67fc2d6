@@ -1,5 +1,0 @@
-package com.caribresort.entity;
-
-public interface CaribResortEntity {
-
-}
