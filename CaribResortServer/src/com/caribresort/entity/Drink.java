@@ -15,8 +15,8 @@ public class Drink  implements CaribResortEntity {
      /**
 	 * 
 	 */
-	private static final long serialVersionUID = -5068487621215742851L;
-	private Integer drinkId;
+	 private static final long serialVersionUID = -5068487621215742851L;
+	 private Integer drinkId;
      private Drinktype drinktype;
      private Integer drinkName;
      private Date createdDate;

@@ -1,0 +1,73 @@
+package com.caribresort.factory;
+
+import java.util.ArrayList;
+import java.util.Set;
+
+import com.caribresort.actions.Request;
+import com.caribresort.actions.RequestAction;
+import com.caribresort.actions.Response;
+import com.caribresort.classes.Order;
+import com.caribresort.database.CustomerDB;
+import com.caribresort.entity.Customerorder;
+import com.caribresort.entity.Customerorderitem;
+import com.caribresort.entity.Guest;
+import com.caribresort.logging.DefaultLogger;
+
+public class GuestFactory extends AbstractFactory {
+
+	
+	public GuestFactory(Request request){
+		this.request = request;
+	}
+	@Override
+	public Response processRequest() {
+		Response response = invalidResponse;
+		switch(request.getAction()){
+		case RequestAction.MAKEORDER:
+			response= makeOrder();
+			break;
+		case RequestAction.ADDITEMTOORDER:
+			response= addItemToOrder();
+			break;
+		}
+		return response==null?invalidResponse:response;
+	}
+	
+	private Response makeOrder(){
+		Response response=null;
+		ArrayList<String> errors = new ArrayList<String>();  
+		try{			
+			
+			Customerorder cOrder=(Customerorder)request.getObject();
+			if(!CustomerDB.insert(cOrder))
+			{
+			    throw new Exception("Unable to save order");	
+			}else{
+				for(Customerorderitem c : cOrder.getCustomerorderitems()){
+					try{
+						c.setCustomerorder(cOrder);
+						CustomerDB.insert(c);
+					}catch(Exception e){
+						DefaultLogger.error("Unable to add item to order |", e);
+					}
+				}
+			}
+			
+		}catch(ClassCastException e){
+			
+		}
+		catch(IllegalArgumentException e){
+			
+		}
+		catch(Exception e){
+			
+		}
+		return response;
+	}
+	
+	private Response addItemToOrder(){
+		//TODO : Implement add item to order
+		return null;
+	}
+
+}

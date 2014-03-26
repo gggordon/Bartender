@@ -1,0 +1,22 @@
+package com.caribresort.database;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.caribresort.entity.*;
+import com.caribresort.logging.DefaultLogger;
+
+public class ManagerDB extends BaseHibernate {
+
+	public static Boolean deleteDrink(int id){
+		return false;
+	}
+	
+	public static List<Armband> getAllArmband(){
+    	return ManagerDB.selectAll(new Armband());
+    }
+}

@@ -14,6 +14,12 @@ public class Response implements Serializable {
 		super();
 	}
 
+	/**
+	 * Response - constructor
+	 * @param success - {Boolean}
+	 * @param errors - {String[]}
+	 * @param result - {Serializable}
+	 * */
 	public Response(Boolean success, String[] errors, Serializable result) {
 		super();
 		this.success = success;

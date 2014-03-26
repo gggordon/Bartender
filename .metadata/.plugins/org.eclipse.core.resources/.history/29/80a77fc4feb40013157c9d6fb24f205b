@@ -1,0 +1,12 @@
+package com.caribresort.database;
+
+public interface NativeQueries {
+	
+	//General Queries
+	String getAllDrinks="select d.* from drink d";
+	
+	
+	//Customer Queries
+	String addItemToOrder="insert into Customerorderitem (customerOrderId , drinkId, orderQuantity ) values ( :customerOrderId , :drinkId, :orderQuantity )";
+
+}

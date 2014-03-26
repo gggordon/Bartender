@@ -1,0 +1,11 @@
+package com.caribresort.database;
+
+import com.caribresort.entity.*;
+
+public class CustomerDB extends BaseHibernate {
+
+	public static Boolean addItemToOrder(Customerorderitem cI){
+		return false;
+	}
+	
+}

@@ -1,0 +1,8 @@
+package com.caribresort.database;
+
+public class ManagerDB extends BaseHibernate {
+
+	public static Boolean deleteDrink(int id){
+		return false;
+	}
+}

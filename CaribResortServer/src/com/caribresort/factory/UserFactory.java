@@ -7,22 +7,24 @@ import com.caribresort.database.BaseHibernate;;
 public class UserFactory {
 
 	public static Response GetFactory(Request request){
-		//login and verify credentials
-		//if user
-		   //return new userfactory process request
-		//if bartender
-		   //return new bartenderfactory process request
-		//if manger
-		   //return new managerfactory process request
-		return null;		
+		switch(login(request.getUsername(),request.getPassword())){
+		case UserType.User:
+			return new GuestFactory(request).processRequest();
+		case UserType.Bartender:
+			return new BartenderFactory(request).processRequest();
+		case UserType.Manager:
+			return new ManagerFactory(request).processRequest();
+		default:
+			return AbstractFactory.invalidResponse;
+		}
+
 	}
 	
 	/**
 	 * @return String userType
 	 * */
-	private static String login(String username, String lastname){
-		
-		return UserType.User;
+	private static String login(String username, String password){
+		return BaseHibernate.getRole(username, password);
 	}
 	
 	

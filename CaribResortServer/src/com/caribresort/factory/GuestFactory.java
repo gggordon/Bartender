@@ -11,6 +11,7 @@ import com.caribresort.database.CustomerDB;
 import com.caribresort.entity.Customerorder;
 import com.caribresort.entity.Customerorderitem;
 import com.caribresort.entity.Guest;
+import com.caribresort.logging.DefaultLogger;
 
 public class GuestFactory extends AbstractFactory {
 
@@ -33,7 +34,6 @@ public class GuestFactory extends AbstractFactory {
 	}
 	
 	private Response makeOrder(){
-		Response response=null;
 		ArrayList<String> errors = new ArrayList<String>();  
 		try{			
 			
@@ -45,28 +45,40 @@ public class GuestFactory extends AbstractFactory {
 				for(Customerorderitem c : cOrder.getCustomerorderitems()){
 					try{
 						c.setCustomerorder(cOrder);
-						CustomerDB.insert(c);
+						if(!CustomerDB.insert(c))
+							throw new Exception("Unable to add item to order");
 					}catch(Exception e){
-						//TODO: loging here
+						
+						DefaultLogger.error("Unable to add item to order |", e);
+						errors.add("Unable to add "+c.getDrink().getDrinkName()+" to order");
 					}
 				}
 			}
 			
-		}catch(ClassCastException e){
-			
-		}
-		catch(IllegalArgumentException e){
-			
 		}
 		catch(Exception e){
-			
+			errors.add("Unable to add order");
+		    DefaultLogger.error("Unable to add order",e);	
 		}
-		return response;
+		
+		return new Response(true,(String[]) errors.toArray(),true);
 	}
 	
 	private Response addItemToOrder(){
-		//TODO : Implement add item to order
-		return null;
+		ArrayList<String> errors = new ArrayList<String>();  
+		try{			
+			
+			Customerorderitem cItem=(Customerorderitem)request.getObject();
+			if(!CustomerDB.addItemToOrder(cItem))
+				throw new Exception("Unable to add item to order");
+			
+		}
+		catch(Exception e){
+			errors.add("Unable to add item to order");
+		    DefaultLogger.error("Unable to add item to order",e);	
+		}
+		
+		return new Response(true,(String[]) errors.toArray(),true);
 	}
 
 }
