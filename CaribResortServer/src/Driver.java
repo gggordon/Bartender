@@ -20,6 +20,10 @@ public class Driver {
 
 	public static void main(String[] args) {
 
+		String request="GETDRINK";
+		System.out.println(
+				String.valueOf( request.charAt(3)) +request.substring(4).toLowerCase()
+				);
 		//insert
 		//System.out.println(BaseHibernate.insert(new Armband("Orange")));
 
@@ -30,6 +34,7 @@ public class Driver {
 		//			System.out.println(a);
 
 		//select by id
+		/*
 		Request req = new Request();
 		req.setAction(RequestAction.ADDDRINK);
 		req.setPassword("123456");
@@ -56,7 +61,7 @@ public class Driver {
 					}catch(Exception e){
 						e.printStackTrace();
 					}
-				}*/
+				}*//*
 
 			}catch(Exception e){
 				e.printStackTrace();
@@ -66,6 +71,7 @@ public class Driver {
 		}
 		//update
 
+		*/
 	}
 
 

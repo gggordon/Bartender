@@ -1,11 +1,14 @@
 package com.caribresort.factory;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
+
 import com.caribresort.actions.Request;
 import com.caribresort.actions.RequestAction;
 import com.caribresort.actions.Response;
 import com.caribresort.database.ManagerDB;
+import com.caribresort.entity.CaribResortEntity;
 import com.caribresort.entity.Drink;
 import com.caribresort.entity.viewmodels.ManagerReportVM;
 import com.caribresort.logging.DefaultLogger;
@@ -16,7 +19,7 @@ public class ManagerFactory extends AbstractFactory {
 	public ManagerFactory(Request request){
 		this.request = request;
 	}
-	
+
 	@Override
 	public Response processRequest() {
 		Response response = invalidResponse;
@@ -39,10 +42,106 @@ public class ManagerFactory extends AbstractFactory {
 		case RequestAction.GENERATEREPORT:
 			response= generateReport();
 			break;
-			
-	    //Other CRUD Operations
+
+			//Other CRUD Operations
+		default:
+			response =defaultCrud();
+			break;
+
 		}
 		return response==null?AbstractFactory.invalidResponse:response;
+	}
+
+	private Response defaultCrud() {
+		Response resp = invalidResponse;
+		List<String> errors = new ArrayList<String>();
+		try{
+			String className=
+					String.valueOf( request.getAction().charAt(3)) +request.getAction().substring(4).toLowerCase();
+			if(request.getAction().startsWith("GET")){
+				//start get
+				int id=0;
+                try{
+                	id = (int) request.getObject();
+                }catch(Exception e){
+                	errors.add("Invalid Id number");
+                	DefaultLogger.error("unable to delete entity", e);
+                }
+                
+                CaribResortEntity ent = ManagerDB.find(Class.forName("com.caribresort.entity."+className), id);
+                if(ent != null){
+                	resp= new Response(ent);
+                }else{
+                	errors.add("Unable to find "+className);
+                	resp= new Response(true,(String[])errors.toArray(),false);
+                }
+                
+				
+				//end get
+
+			}else if(request.getAction().startsWith("UPD")){
+				//start update
+				CaribResortEntity ent = (CaribResortEntity)Class.forName("com.caribresort.entity."+className).cast(request.getObject());
+				if(!ManagerDB.update(ent)){
+					errors.add("Unable to update object");
+					resp = new Response(true,(String[])errors.toArray(),false);					
+				}else{
+					resp = new Response(true);
+				}
+			}//end update
+			else if(request.getAction().startsWith("DEL")){
+				//start delete
+				
+                int id=0;
+                try{
+                	id = (int) request.getObject();
+                }catch(Exception e){
+                	errors.add("Invalid Id number");
+                	DefaultLogger.error("unable to delete entity", e);
+                }
+                
+                if(ManagerDB.deleteEntity(id, Class.forName("com.caribresort.entity."+className))){
+                	resp= new Response(true);
+                }else{
+                	resp= new Response(true,(String[])errors.toArray(),false);
+                }
+
+				
+			} //end delete
+			else if(request.getAction().startsWith("ADD")){
+				//start insert
+				
+				CaribResortEntity obj = null;
+				try {
+					obj = (CaribResortEntity) Class.forName("com.caribresort.entity."+className).cast(request.getObject());
+				} catch (ClassNotFoundException e) {
+					DefaultLogger.error("Unable to perform insert", e);
+					errors.add("Unable to perform insert");
+					throw e;
+				}
+				if(obj == null)
+					throw new  Exception("Incorrect parameter");
+				resp = new Response(ManagerDB.insert(  obj  ));
+			}//end insert
+			else if(request.getAction().startsWith("ALL")){
+				//start select all
+				
+				resp = new Response((Serializable) ManagerDB.class.getMethod("getAll"+className, null).invoke(new ManagerDB(), null));
+				//end select all
+			}
+			
+		}catch(Exception e){
+			
+			if(errors.size()==0){
+				resp = invalidResponse;
+				DefaultLogger.error("Invalid Request",e);
+			}
+			else{
+			    resp = new Response(true,(String[])errors.toArray(),false);
+			    DefaultLogger.error("An error occured",e);
+			}
+		}
+		return resp;
 	}
 
 	private Response generateReport() {
@@ -68,10 +167,10 @@ public class ManagerFactory extends AbstractFactory {
 	private Response updateDrink() {
 		Drink newDrink = null;
 		try{
-        	newDrink = (Drink)request.getObject();
-        }catch(ClassCastException e){
-        	return new Response(true,new String[]{"Invalid Drink Format"},false);
-        }
+			newDrink = (Drink)request.getObject();
+		}catch(ClassCastException e){
+			return new Response(true,new String[]{"Invalid Drink Format"},false);
+		}
 		if(ManagerDB.update(newDrink))
 			return new Response(true,new String[]{},true);
 		else
@@ -80,27 +179,27 @@ public class ManagerFactory extends AbstractFactory {
 	}
 
 	private Response removeDrink() {
-        int drinkId = 0;
+		int drinkId = 0;
 		try{
-        	drinkId = (int)request.getObject();
-        }catch(ClassCastException e){
-        	return new Response(true,new String[]{"Please specify the drink Id number"},false);
-        }
+			drinkId = (int)request.getObject();
+		}catch(ClassCastException e){
+			return new Response(true,new String[]{"Please specify the drink Id number"},false);
+		}
 		if(ManagerDB.deleteDrink(drinkId))
 			return new Response(true,new String[]{},true);
 		else
 			return new Response(true,new String[]{"Unable to delete drink"},false);
 	}
 
-	
+
 
 	private Response addDrink() {
 		Drink newDrink = null;
 		try{
-        	newDrink = (Drink)request.getObject();
-        }catch(ClassCastException e){
-        	return new Response(true,new String[]{"Invalid Drink Format"},false);
-        }
+			newDrink = (Drink)request.getObject();
+		}catch(ClassCastException e){
+			return new Response(true,new String[]{"Invalid Drink Format"},false);
+		}
 		if(ManagerDB.insert(newDrink))
 			return new Response(true);
 		else

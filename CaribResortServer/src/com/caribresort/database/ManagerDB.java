@@ -3,6 +3,7 @@ package com.caribresort.database;
 import java.util.List;
 
 import com.caribresort.entity.Armband;
+import com.caribresort.entity.CaribResortEntity;
 import com.caribresort.entity.Customerorder;
 import com.caribresort.entity.Customerorderitem;
 import com.caribresort.entity.Drinktype;
@@ -88,5 +89,13 @@ public class ManagerDB extends BaseHibernate {
 		}
 		return report;
 	}
+	
+	public static Boolean deleteEntity(int id,Class clazz){
+		
+		CaribResortEntity ent = ManagerDB.find(clazz, id);
+		if(ent == null)
+			return false;
+		return ManagerDB.delete(ent);		
+     }
 
 }
