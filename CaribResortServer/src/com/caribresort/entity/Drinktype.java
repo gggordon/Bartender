@@ -21,6 +21,11 @@ public class Drinktype  implements CaribResortEntity {
 
     public Drinktype() {
     }
+    
+    public Drinktype(Integer drinkTypeId, String drinkTypeName) {
+    	this.drinkTypeId = drinkTypeId;
+    	this.drinkTypeName = drinkTypeName;
+    }
 
     public Drinktype(String drinkTypeName, Set<Drink> drinks) {
        this.drinkTypeName = drinkTypeName;

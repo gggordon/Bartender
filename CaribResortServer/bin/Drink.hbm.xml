@@ -11,7 +11,7 @@
         <many-to-one name="drinktype" class="com.caribresort.entity.Drinktype" fetch="select">
             <column name="drinkTypeId" />
         </many-to-one>
-        <property name="drinkName" type="java.lang.Integer">
+        <property name="drinkName" type="java.lang.String">
             <column name="drinkName" />
         </property>
         <property name="createdDate" type="timestamp">

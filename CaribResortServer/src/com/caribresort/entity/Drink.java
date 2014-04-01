@@ -18,19 +18,26 @@ public class Drink  implements CaribResortEntity {
 	 private static final long serialVersionUID = -5068487621215742851L;
 	 private Integer drinkId;
      private Drinktype drinktype;
-     private Integer drinkName;
+     private String drinkName;
      private Date createdDate;
      private Set<Customerorderitem> customerorderitems = new HashSet<Customerorderitem>(0);
 
     public Drink() {
     }
 
-    public Drink(Drinktype drinktype, Integer drinkName, Date createdDate, Set<Customerorderitem> customerorderitems) {
+    public Drink(Drinktype drinktype, String drinkName, Date createdDate, Set<Customerorderitem> customerorderitems) {
        this.drinktype = drinktype;
        this.drinkName = drinkName;
        this.createdDate = createdDate;
        this.customerorderitems = customerorderitems;
     }
+    
+    public Drink(Drinktype drinktype, String drinkName, Date createdDate) {
+        this.drinktype = drinktype;
+        this.drinkName = drinkName;
+        this.createdDate = createdDate;
+        
+     }
    
     public Integer getDrinkId() {
         return this.drinkId;
@@ -46,11 +53,11 @@ public class Drink  implements CaribResortEntity {
     public void setDrinktype(Drinktype drinktype) {
         this.drinktype = drinktype;
     }
-    public Integer getDrinkName() {
+    public String getDrinkName() {
         return this.drinkName;
     }
     
-    public void setDrinkName(Integer drinkName) {
+    public void setDrinkName(String drinkName) {
         this.drinkName = drinkName;
     }
     public Date getCreatedDate() {

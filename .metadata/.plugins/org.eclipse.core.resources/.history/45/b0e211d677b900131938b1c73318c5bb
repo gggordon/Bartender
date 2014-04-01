@@ -1,0 +1,9 @@
+package com.caribresort.entity.viewmodels;
+
+import java.io.Serializable;
+
+public class FrequencyReportVM implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+}

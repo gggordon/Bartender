@@ -13,6 +13,8 @@ public interface NativeQueries {
 	
 	//Manager Queries
 	String deleteDrink="delete from drink d where d.drinkId = :drinkId";
+	String frequencyReport = "select cI.drinkId, d.drinkName, SUM(cI.orderQuantity) as amt, DATE(cO.orderDate) as orderDate from Customerorderitem cI inner join Drink d on d.drinkId = cI.drinkId inner join Customerorder cO on cO.customerOrderId = cI.customerOrderId where DATE(cO.orderDate) between :dateStart and :dateEnd group by cI.drinkId order by DATE(cO.orderDate) asc, SUM(cI.orderQuantity) desc";
+	String mostFrequentDrinks="select cI.drinkId, d.drinkName, SUM(cI.orderQuantity) as amt from Customerorderitem cI inner join Drink d on d.drinkId = cI.drinkId group by cI.drinkId order by SUM(cI.orderQuantity) desc";
 	
 	String getRole="select r.roleName from employee e inner join role r on r.roleId = e.roleId where e.userName = :userName and  e.password = :password";
 }

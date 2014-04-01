@@ -1,0 +1,41 @@
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.TreeSet;
+
+import com.caribresort.actions.*;
+
+import com.caribresort.database.BaseHibernate;
+import com.caribresort.entity.*;
+import com.caribresort.factory.UserFactory;
+
+/**
+ * Driver module to be used by application
+ * */
+public class Driver {
+
+	public static void main(String[] args) {
+
+		//insert
+		//System.out.println(BaseHibernate.insert(new Armband("Orange")));
+		
+		//selectAll
+//		List<Armband> rs = new ArrayList<Armband>();
+//		rs = BaseHibernate.selectAll(new Armband());
+//		for(Armband a : rs)
+//			System.out.println(a);
+		
+		//select by id
+		Request req = new Request();
+		req.setAction(RequestAction.VIEWDRINKS);
+	    Response resp=UserFactory.GetFactory(req);
+        Array drinks = (Array) resp.getResult();		
+		//update
+
+	}
+	
+	
+
+}

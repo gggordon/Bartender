@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.jboss.logging.Logger;
 
 import com.caribresort.entity.CaribResortEntity;
 import com.caribresort.entity.Drink;
@@ -25,7 +26,7 @@ public class BaseHibernate {
 			Configuration configuration = new Configuration();
 			configuration=configuration.configure("hibernate.cfg.xml");
 			sessionFactory = configuration.buildSessionFactory();
-
+            
 		} catch (Throwable ex) {
 			DefaultLogger.error("Initialization failed", ex);
 			throw new ExceptionInInitializerError(ex);
@@ -183,19 +184,36 @@ public class BaseHibernate {
 		return result;    	
 	}
 
-	public static List<Drink> getAllDrinks(){
-		List<Drink> drinks = new ArrayList<Drink>();
+	public static List<Object> getAllDrinks(){
+		List<Object> drinks = new ArrayList<Object>();
 		Session session = getSession();
 		Transaction trans = null;
 		try{
 			trans = session.beginTransaction();
-			Query query = session.createQuery("from drink");
+			Query query = session.createQuery("from Drink");
 			drinks = query.list();
 			trans.commit();
 		}catch(Exception e){
 			if(trans != null)
 				trans.rollback();
 			DefaultLogger.error("Unable to get all drinks",e);
+		}
+		return drinks;
+	}
+	
+	public static List<Object> getAllDrinkType(){
+		List<Object> drinks = new ArrayList<Object>();
+		Session session = getSession();
+		Transaction trans = null;
+		try{
+			trans = session.beginTransaction();
+			Query query = session.createQuery("from Drinktype");
+			drinks = query.list();
+			trans.commit();
+		}catch(Exception e){
+			if(trans != null)
+				trans.rollback();
+			DefaultLogger.error("Unable to get all drink types",e);
 		}
 		return drinks;
 	}

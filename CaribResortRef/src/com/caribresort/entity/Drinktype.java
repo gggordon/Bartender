@@ -19,15 +19,23 @@ public class Drinktype  implements CaribResortEntity {
      private String drinkTypeName;
      private Set<Drink> drinks = new HashSet<Drink>(0);
 
-    public Drinktype() {
-    }
+    
 
     public Drinktype(String drinkTypeName, Set<Drink> drinks) {
        this.drinkTypeName = drinkTypeName;
        this.drinks = drinks;
     }
    
-    public Integer getDrinkTypeId() {
+    public Drinktype(int id, String drinkTypeName) {
+    	this.drinkTypeName = drinkTypeName;
+    	drinkTypeId=id;
+	}
+    
+    public Drinktype(){
+    	super();
+    }
+
+	public Integer getDrinkTypeId() {
         return this.drinkTypeId;
     }
     
@@ -53,6 +61,12 @@ public class Drinktype  implements CaribResortEntity {
 	public Object PopulateFromArray(Object[] data) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public String toString() {
+		return "Drinktype [drinkTypeId=" + drinkTypeId + ", drinkTypeName="
+				+ drinkTypeName +  "]";
 	}
 
 

@@ -1,16 +1,13 @@
 package com.caribresort.factory;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 import com.caribresort.actions.Request;
 import com.caribresort.actions.RequestAction;
 import com.caribresort.actions.Response;
-import com.caribresort.classes.Order;
 import com.caribresort.database.CustomerDB;
 import com.caribresort.entity.Customerorder;
 import com.caribresort.entity.Customerorderitem;
-import com.caribresort.entity.Guest;
 import com.caribresort.logging.DefaultLogger;
 
 public class GuestFactory extends AbstractFactory {
@@ -29,9 +26,14 @@ public class GuestFactory extends AbstractFactory {
 		case RequestAction.ADDITEMTOORDER:
 			response= addItemToOrder();
 			break;
+		case RequestAction.VIEWDRINKS:
+			response = viewDrinks();
+			break;
 		}
 		return response==null?invalidResponse:response;
 	}
+	
+	
 	
 	private Response makeOrder(){
 		ArrayList<String> errors = new ArrayList<String>();  

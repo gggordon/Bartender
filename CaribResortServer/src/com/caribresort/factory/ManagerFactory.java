@@ -1,10 +1,14 @@
 package com.caribresort.factory;
 
+import java.util.List;
+import java.util.ArrayList;
 import com.caribresort.actions.Request;
 import com.caribresort.actions.RequestAction;
 import com.caribresort.actions.Response;
 import com.caribresort.database.ManagerDB;
 import com.caribresort.entity.Drink;
+import com.caribresort.entity.viewmodels.ManagerReportVM;
+import com.caribresort.logging.DefaultLogger;
 
 
 public class ManagerFactory extends AbstractFactory {
@@ -23,7 +27,9 @@ public class ManagerFactory extends AbstractFactory {
 		case RequestAction.VIEWDRINKS:
 			response= viewDrinks();
 			break;
-			
+		case RequestAction.VIEWDRINKTYPES:
+			response= viewDrinkTypes();
+			break;	
 		case RequestAction.REMOVEDRINK:
 			response= removeDrink();
 			break;
@@ -33,13 +39,30 @@ public class ManagerFactory extends AbstractFactory {
 		case RequestAction.GENERATEREPORT:
 			response= generateReport();
 			break;
+			
+	    //Other CRUD Operations
 		}
 		return response==null?AbstractFactory.invalidResponse:response;
 	}
 
 	private Response generateReport() {
-		// TODO Auto-generated method stub
-		return null;
+		List<String> errors = new ArrayList<String>();
+		java.sql.Date dateStart = null;
+		java.sql.Date dateEnd = null;
+		try{
+			dateStart = (java.sql.Date)(((Object[])request.getObject())[0]);
+			dateEnd = (java.sql.Date)(((Object[])request.getObject())[1]);
+		}catch(ClassCastException e){
+			DefaultLogger.error("Unable to convert object to array of dates",e);
+			errors.add("Unable to convert object to array of dates");
+		}catch(IllegalArgumentException e){
+			DefaultLogger.error("Incorrect amount of dates sent",e);
+			errors.add("Incorrect amount of dates sent");
+		}
+		ManagerReportVM report = ManagerDB.getManagerReport(dateStart, dateEnd);
+		if(report==null)
+			errors.add("Unable to query frequency results from database");
+		return report!=null?new Response(report):new Response(true,(String[])errors.toArray(),false);
 	}
 
 	private Response updateDrink() {
@@ -69,13 +92,19 @@ public class ManagerFactory extends AbstractFactory {
 			return new Response(true,new String[]{"Unable to delete drink"},false);
 	}
 
-	private Response viewDrinks() {
-		return new Response(true,new String[0],ManagerDB.getAllDrinks().toArray());
-	}
+	
 
 	private Response addDrink() {
-		// TODO Auto-generated method stub
-		return null;
+		Drink newDrink = null;
+		try{
+        	newDrink = (Drink)request.getObject();
+        }catch(ClassCastException e){
+        	return new Response(true,new String[]{"Invalid Drink Format"},false);
+        }
+		if(ManagerDB.insert(newDrink))
+			return new Response(true);
+		else
+			return new Response(true,new String[]{"Unable to add drink"},false);
 	}
 
 }

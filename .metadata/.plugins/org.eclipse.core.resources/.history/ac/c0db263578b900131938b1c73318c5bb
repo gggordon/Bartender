@@ -1,0 +1,22 @@
+package com.caribresort.entity.viewmodels;
+
+import java.io.Serializable;
+
+public class ManagerReportVM implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
+	
+	public class FrequencyReportRecord implements Serializable{
+	    
+		private static final long serialVersionUID = 1L;
+		private Integer drinkId;
+		private String drinkName;
+		private Integer quantitySum;
+		private java.sql.Date orderDate;
+		
+		
+		
+	}
+
+}

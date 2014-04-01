@@ -11,8 +11,11 @@ public interface RequestAction {
 	
 	//Manager Actions
 	String GENERATEREPORT = "GENERATEREPORT";
-	String VIEWDRINKS = "VIEWDRINKS";
-	String ADDDRINK = "ADDDRINKR";
+    String ADDDRINK = "ADDDRINKR";
 	String REMOVEDRINK = "REMOVEDRINK";
 	String UPDATEDRINK = "UPDATEDRINK";
+	
+	//All User Actions
+	String VIEWDRINKS = "VIEWDRINKS";
+	String VIEWDRINKTYPES = "VIEWDRINKTYPES";
 }

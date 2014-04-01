@@ -1,0 +1,7 @@
+package com.caribresort.entity.viewmodels;
+
+import java.io.Serializable;
+
+public class ManagerReportVM implements Serializable{
+
+}

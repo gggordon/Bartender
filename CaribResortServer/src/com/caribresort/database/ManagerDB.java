@@ -9,6 +9,9 @@ import com.caribresort.entity.Drinktype;
 import com.caribresort.entity.Employee;
 import com.caribresort.entity.Guest;
 import com.caribresort.entity.Role;
+import com.caribresort.entity.viewmodels.ManagerReportVM;
+import com.caribresort.entity.viewmodels.ManagerReportVM.FrequencyReportRecord;
+import com.caribresort.logging.DefaultLogger;
 
 public class ManagerDB extends BaseHibernate {
 
@@ -44,6 +47,46 @@ public class ManagerDB extends BaseHibernate {
 
 	public static List<Role> getAllRole() {
 		return ManagerDB.selectAll(new Role());
+	}
+
+	public static ManagerReportVM getManagerReport(java.sql.Date dateStart, java.sql.Date dateEnd){
+		ManagerReportVM report = new ManagerReportVM();
+		try{
+			//Retrieving Frequency Report
+			String query = NativeQueries.frequencyReport;
+			query.replaceFirst(":dateStart","'"+dateStart.toString()+"'");
+			query.replaceFirst(":dateEnd","'"+dateEnd.toString()+"'");
+			List<Object[]> results = ManagerDB.nativeQuery(query);
+			if(results != null)
+				if(results.size() > 0){
+					try{
+						for(Object[] res : results){
+							report.addFrequencyReportRecord(report.new FrequencyReportRecord(res));  
+						}
+					}catch(Exception e){
+						DefaultLogger.error("Frequency report query returned less than expected columns",e);
+						throw e;
+					}
+				}
+			//Retrieving Frequency Report
+			results = ManagerDB.nativeQuery(NativeQueries.mostFrequentDrinks);
+			if(results != null)
+				if(results.size() > 0){
+					try{
+						for(Object[] res : results){
+							report.addFrequencyDrinkRecord(report.new FrequencyDrinkRecord(res));  
+						}
+					}catch(Exception e){
+						DefaultLogger.error("Frequency report query returned less than expected columns",e);
+						throw e;
+					}
+				}
+			
+		}catch(Exception e){
+			DefaultLogger.error("Unable to create Manager Report",e);
+			report = null;
+		}
+		return report;
 	}
 
 }

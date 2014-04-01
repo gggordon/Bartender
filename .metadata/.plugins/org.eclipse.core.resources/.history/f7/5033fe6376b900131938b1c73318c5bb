@@ -1,0 +1,20 @@
+package com.caribresort.database;
+
+public interface NativeQueries {
+	
+	//General Queries
+	String getAllDrinks="select d.* from drink d";
+	
+	
+	//Customer Queries
+	String addItemToOrder="insert into Customerorderitem (customerOrderId , drinkId, orderQuantity ) values ( :customerOrderId , :drinkId, :orderQuantity )";
+
+	//Bartender Queries
+	
+	//Manager Queries
+	String deleteDrink="delete from drink d where d.drinkId = :drinkId";
+	String frequencyReport = "select cI.drinkId, d.drinkName, SUM(cI.orderQuantity), DATE(cO.orderDate) from Customerorderitem cI inner join Drink d on d.drinkId = cI.drinkId inner join Customerorder cO on cO.customerOrderId = cI.customerOrderId where DATE(cO.orderDate) between :date1 and :date2 group by DATE(cO.orderDate) order by DATE(cO.orderDate) asc, SUM(cI.orderQuantity)";
+	
+	
+	String getRole="select r.roleName from employee e inner join role r on r.roleId = e.roleId where e.userName = :userName and  e.password = :password";
+}

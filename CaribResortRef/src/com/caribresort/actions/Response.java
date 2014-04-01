@@ -11,8 +11,13 @@ public class Response implements Serializable {
 	private Serializable result;
 	
 	public Response() {
-		super();
+		this(true,new String[0],true);
 	}
+	
+	public Response(Serializable object) {
+		this(true,new String[0],object);
+	}
+	
 
 	/**
 	 * Response - constructor

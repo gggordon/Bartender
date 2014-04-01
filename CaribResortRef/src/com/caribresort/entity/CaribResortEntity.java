@@ -11,4 +11,7 @@ public interface CaribResortEntity extends Serializable{
 	 * Variables in temporary object before returning temporary object
 	 * */
 	public Object PopulateFromArray(Object[] data);
+	
+	public Drinktype ALCOHOLIC = new Drinktype(1,"alcoholic");
+	public Drinktype NONALCOHOLIC = new Drinktype(2,"non-alcoholic");
 }
